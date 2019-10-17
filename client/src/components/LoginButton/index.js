@@ -36,7 +36,8 @@ class LoginButton extends React.Component {
     modalIsOpen: false,
     facebook: '2334014023351700',
     google:
-      '801055399463-0buo8uiukhiial91079gnd8jf5h368p2.apps.googleusercontent.com',
+      '197261618314-asjslbvjc3j384dmce8m1o88g8ktd0sj.apps.googleusercontent.com',
+      // '801055399463-0buo8uiukhiial91079gnd8jf5h368p2.apps.googleusercontent.com',
     isLoggedIn: false,
     user_id: ""
 

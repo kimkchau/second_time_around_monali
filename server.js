@@ -45,8 +45,11 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds235788.mlab.com:35788/heroku_9q5njqg9");
+// Connect to the Mongo DB 
+// local connection
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/secondtimeapp");
+// heroku connection
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds235788.mlab.com:35788/heroku_9q5njqg9");
 
 // Start the API server
 app.listen(PORT, function () {
