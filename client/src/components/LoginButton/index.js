@@ -213,6 +213,7 @@ class LoginButton extends React.Component {
                       this.handleFormSubmit();
                       this.closeModal();
                        { window.location.reload("true") }
+                       console.log('Login Success');
                     },
                     onFail: error => {
                       console.log('Login Fail', error);

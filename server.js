@@ -47,9 +47,9 @@ app.use(routes);
 
 // Connect to the Mongo DB 
 // local connection
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/secondtimeapp");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/secondtimeapp");
 // heroku connection
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds235788.mlab.com:35788/heroku_9q5njqg9");
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds235788.mlab.com:35788/heroku_9q5njqg9");
 
 // Start the API server
 app.listen(PORT, function () {
