@@ -1,23 +1,16 @@
 import React from "react";
-// import Modal from 'react-modal';
 import "./style.css";
-// import ReactDOM from 'react-dom';
-// // import Background from './donate.jpg';
-// import SocialLogin from '@majac/react-social-login';
-// import { FacebookLoginButton } from "react-social-login-buttons";
-// import { GoogleLoginButton } from "react-social-login-buttons";
-import LoginButton from "../LoginButton";
+import Login from "../Login";
 import SignOutButton from "../SignOutButton";
-import {connect} from "react-redux";
-import {Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
 class Navbar extends React.Component {
-  state ={
+  state = {
     login: false
   }
 
-  state={}
+  state = {}
 
   ifLoginClicked = () => {
     this.setState({ isLoggedIn: true });
@@ -28,7 +21,7 @@ class Navbar extends React.Component {
   }
 
   logInInfo = (val) => {
-    console.log("hurrat  " + val);
+    console.log("hurray  " + val);
   }
 
   handleRef = (val) => {
@@ -37,36 +30,13 @@ class Navbar extends React.Component {
 
   render() {
     return (
-
       <div>
         <nav className="navbar navbar-expand-lg navbar-light">
-
           <Link className="navstylelogo navbar-brand logo" to="/">
             {/* Second time around */}
-            <img className="navstylelogo navbar-brand logo" src={require('./logo.png')} height="80" class="d-inline-block align-top logoimg" alt="secondtime"/>
-      </Link>
+            <img className="navstylelogo navbar-brand logo" src={require('./logo.png')} height="80" class="d-inline-block align-top logoimg" alt="secondtime" />
+          </Link>
 
-
-          {/* <a className="navstylelogo navbar-brand logo" href="#">
-            Second time around
-        </a> */}
-          {/* <img className="navstylelogo navbar-brand logo" src={require('./logo.png')} height="80" class="d-inline-block align-top" alt="secondtime"/> */}
-          <div>
-            {/* <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link
-              to="/profile"
-              className={
-                window.location.pathname === "/" || window.location.pathname === "/profile"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
-              Profile
-            </Link>
-          </li>
-        </ul> */}
-          </div>
           <button
             className="navbar-toggler"
             data-toggle="collapse"
@@ -81,7 +51,6 @@ class Navbar extends React.Component {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <a className="navstyle nav-link" href="#">
-                  {/* Home <span className="sr-only">(current)</span> */}
                 </a>
               </li>
               <li className="navstyle nav-item">
@@ -90,17 +59,12 @@ class Navbar extends React.Component {
                 </a>
               </li>
             </ul>
-
             <a href="/profile"><button className="navbuttonprofile btn btn-warning my-2 btn-sm">Profile</button></a>
-              
-              {(localStorage.getItem("nameId")!=null)?<SignOutButton />:<LoginButton name={"Log In"} />}
-
-              
+            {(localStorage.getItem("nameId") != null) ? <SignOutButton /> : <Login name={"Log In"} />}
           </div>
         </nav>
       </div>
     );
-
   }
 }
 export default Navbar;

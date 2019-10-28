@@ -4,7 +4,7 @@ import "./style.css";
 function CardWrapper(props) {
     return <div className="classwrapper">
         <div className="container">
-                    {props.children}
+            {props.children}
         </div>
     </div>;
 }

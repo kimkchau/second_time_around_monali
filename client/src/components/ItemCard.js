@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import API from "../utils/API";
 import "./itemcardstyle.css";
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Geocode from "react-geocode";
-import spinner from "../components/SimpleMap/mr_worldwide.gif"
 import MapModal from "../components/traesModal";
 var dateFormat = require('dateformat');
-
 
 const style = {
   width: '93%',
@@ -17,12 +14,8 @@ class ItemCard extends Component {
 
   state = {
     number: "",
-    //claimed_date:"",
     text: "Claim it",
-    // mapAddress: "Location",
-    // idtest: "",
     position: ""
-
   }
 
   // User provides an address and Geocode will provide the lat and lng coordinates
@@ -39,7 +32,6 @@ class ItemCard extends Component {
           lngd: lng
         });
         console.log('donate user ', lat, lng);
-        // console.log('donate user');
       },
       error => {
         console.log('getUserCoordinate test err', address)
@@ -59,7 +51,6 @@ class ItemCard extends Component {
     });
   }
 
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -69,9 +60,9 @@ class ItemCard extends Component {
 
   handleClick = (id) => {
 
-    console.log("inside click" + id);
+    // console.log("inside click" + id);
     var claimed_date = new Date();
-    console.log("ooo" + claimed_date);
+    // console.log("ooo" + claimed_date);
     //this.setState({idtest:id})
     //var claimedDate=claimed_date;
     API.updatePost(id)
@@ -79,11 +70,9 @@ class ItemCard extends Component {
         console.log(res.data);
       })
       .catch(err => console.log(err));
-
     this.setState({
       text: "claimed"
     });
-
   };
 
   updatePost = () => {
@@ -101,10 +90,7 @@ class ItemCard extends Component {
         console.log(res.data);
       })
       .catch(err => console.log(err));
-
   };
-
-
 
   render() {
     //console.log(this.props.item.itemName);
@@ -118,23 +104,15 @@ class ItemCard extends Component {
             <hr></hr>
             <p className="cardcontent card-text">Pick it up at {this.props.item.Address}</p>
             <p className="cardcontent card-text">This item was posted on  {dateFormat(this.props.item.date, "dddd, mmmm dS, yyyy, h:MM:ss TT")} .</p>
-            {/* <p>Items available for 5 days after posting</p> */}
           </div>
           <div class="card-footer">
             {/*<!-- Button trigger modal for Claim it -->*/}
-          <span><button type="button" className="navbuttonprofile btn btn-warning my-2 btn-sm" data-toggle="modal" data-target={"#exampleModalCenter1" + this.props.item._id} onClick={() => this.handleClick(this.props.item._id)} >{this.state.text}</button>
-            {/*<!-- Button trigger modal for Maps --> */}
-            <button type="button" class="navbutton btn btn-warning my-2 btn-sm" data-toggle="modal" data-target={"#ModalMap" + this.props.item._id} onClick={() => this.getUserCoordinates(this.props.item.Address)}>Location</button></span>
+            <span><button type="button" className="navbuttonprofile btn btn-warning my-2 btn-sm" data-toggle="modal" data-target={"#exampleModalCenter1" + this.props.item._id} onClick={() => this.handleClick(this.props.item._id)} >{this.state.text}</button>
+              {/*<!-- Button trigger modal for Maps --> */}
+              <button type="button" class="navbutton btn btn-warning my-2 btn-sm" data-toggle="modal" data-target={"#ModalMap" + this.props.item._id} onClick={() => this.getUserCoordinates(this.props.item.Address)}>Location</button></span>
           </div>
-           
-           <MapModal modalID={this.props.item._id} position={this.state.position} lat={this.state.latd} lng={this.state.lngd}/>
 
-          {/*<!-- Button trigger modal for Claim it -->*/}
-          {/* <div className="col-md-4">
-            <div className="">
-              <button type="button" className="navbutton btn btn-warning my-2 btn-sm" data-toggle="modal" data-target={"#exampleModalCenter1" + this.props.item._id} onClick={() => this.handleClick(this.props.item._id)} >{this.state.text}</button>
-            </div>
-          </div> */}
+          <MapModal modalID={this.props.item._id} position={this.state.position} lat={this.state.latd} lng={this.state.lngd} />
 
           {/*<!-- Modal for Claim it -->*/}
           <div className="modal fade" id={"exampleModalCenter1" + this.props.item._id} tabIndex="-1" role="dialog"
@@ -167,22 +145,10 @@ class ItemCard extends Component {
               </div>
             </div>
           </div>
-
-          
-
         </div>
-
       </div>
-
-
-
     );
   }
 }
 
 export default ItemCard;
-
-
-// export default GoogleApiWrapper({
-//   apiKey: "AIzaSyC43qVzPHXSL3TaW4zNV8Kwu6a3PdmLcp8"
-// })(ItemCard);

@@ -1,12 +1,11 @@
 import React from 'react'
 import Modal from 'react-modal';
 import "./style.css";
-import ReactDOM from 'react-dom';
-// import Background from './donate.jpg';
 import SocialLogin from '@majac/react-social-login';
 import { FacebookLoginButton } from "react-social-login-buttons";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import API from "../../utils/API";
+
 const customStyles = {
   content: {
     top: '50%',
@@ -22,35 +21,37 @@ const customStyles = {
 
 const styleLogIn = {
   "marginLeft": "1px"
-}
+};
+
 Modal.setAppElement('#main')
-class LoginButton extends React.Component {
+
+class Login extends React.Component {
+
   printConsole() {
     console.log("loff");
   }
+
   state = {
     email: "",
     name: "",
-    picture: "",
+    // picture: "",
     password: "",
     modalIsOpen: false,
     facebook: '2334014023351700',
     google:
-      '197261618314-asjslbvjc3j384dmce8m1o88g8ktd0sj.apps.googleusercontent.com',
-      // '801055399463-0buo8uiukhiial91079gnd8jf5h368p2.apps.googleusercontent.com',
+      //kim,
+      // '197261618314-asjslbvjc3j384dmce8m1o88g8ktd0sj.apps.googleusercontent.com',
+      //monali,
+      '801055399463-0buo8uiukhiial91079gnd8jf5h368p2.apps.googleusercontent.com',
     isLoggedIn: false,
     user_id: ""
-
   };
-
-  // this.openModal = this.openModal.bind(this);
-  // this.afterOpenModal = this.afterOpenModal.bind(this);
-  // this.closeModal = this.closeModal.bind(this);
 
   openModal = (e) => {
     e.preventDefault();
     this.setState({ modalIsOpen: true });
   }
+
   afterOpenModal = () => {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = 'blue';
@@ -58,17 +59,17 @@ class LoginButton extends React.Component {
     this.subBtn.style.backgroundColor = "blue";
     this.subBtn.style.color = "white";
     this.subBtn.style.marginLeft = "40%";
-
   }
 
   closeModal = () => {
     this.setState({ modalIsOpen: false });
-
   }
+
   postData = (e) => {
     e.preventDefault();
     console.log(this.state);
   }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     console.log(event.target);
@@ -84,67 +85,32 @@ class LoginButton extends React.Component {
 
   handleFormSubmit = () => {
     const newPost = {
-          name: this.state.name,
-          picture: this.state.picture,
-          email: this.state.email
-        }
-    console.log("In handle submit");
-    API.findUser(this.state.email).then(res=>{
-      console.log('test',res.data);
-        if (res.data.length === 0) {
-          console.log("not there");
-          API.saveUser(newPost)
-            .then(res2 => {
+      name: this.state.name,
+      email: this.state.email
+    }
 
-              //console.log(res.data);
-              localStorage.clear();
-              localStorage.setItem("nameId", res2.data._id);
-              this.setState({ user_id: res2.data._id });
-            }
-            )
-            .catch(err => console.log(err));
-        } else {
-          console.log(res);
-          localStorage.clear();
-          localStorage.setItem("nameId", res.data[0]._id);
-        }
+    console.log("In handle login submit");
+
+    API.findUser(this.state.email).then(res => {
+      console.log('test', res.data);
+
+      if (res.data.length === 0) {
+        console.log("not there");
+
+        API.saveUser(newPost)
+          .then(res2 => {
+            localStorage.clear();
+            localStorage.setItem("nameId", res2.data._id);
+            this.setState({ user_id: res2.data._id });
+          }).catch(err => console.log(err));
+      } else {
+        console.log(res);
+        localStorage.clear();
+        localStorage.setItem("nameId", res.data[0]._id);
+      }
 
     }).catch(err => console.log(err));
-    // event.preventDefault();
-    // if (this.state.email) {
-    //   const newPost = {
-    //     name: this.state.name,
-    //     picture: this.state.picture,
-    //     email: this.state.email
-    //   }
 
-    //   API.findUser(this.state.email).then(res => {
-    //     console.log('test',res.data);
-    //     if (res.data.length === 0) {
-    //       console.log("not there");
-    //       API.saveUser(newPost)
-    //         .then(res2 => {
-
-    //           //console.log(res.data);
-    //           localStorage.clear();
-    //           localStorage.setItem("nameId", res2.data._id);
-    //           this.setState({ user_id: res2.data._id });
-    //         }
-    //         )
-    //         .catch(err => console.log(err));
-    //     } else {
-    //       console.log(res);
-    //       localStorage.clear();
-    //       localStorage.setItem("nameId", res.data[0]._id);
-    //     }
-
-    //   }
-    //   )
-    //     .catch(err => console.log(err));
-
-    //   //console.log("newPost", newPost);
-
-    // }
   };
 
   render() {
@@ -156,7 +122,6 @@ class LoginButton extends React.Component {
 
         <Modal
           isOpen={this.state.modalIsOpen}
-          // onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
@@ -166,12 +131,6 @@ class LoginButton extends React.Component {
           <div className="divSide">
             <div class="container">
               <div class="vertical-center">
-                {/* <h1 className="sectiontitle">Reduce, reuse, recyle</h1> */}
-                {/* <ul className="ulHelp">
-                    <p><i className="fa fa-camera"></i> Post listings</p>
-                    <p><i className='fas fa-comments'></i> Chat with buyers and sellers</p>
-                    <p><i className="fa fa-heart"></i> Save listings</p>
-                  </ul> */}
               </div>
             </div>
           </div>
@@ -179,19 +138,15 @@ class LoginButton extends React.Component {
           <div className="loginStuff">
             <div class="container">
               <div class="vertical-center">
-              {/* <img className="navstylelogo navbar-brand logo" src={require('../Navbar/logo.png')} height="80" class="d-inline-block align-top logoimg" alt="secondtime"/> */}
-                {/* <h3 className="logologin">Second Time Around</h3> */}
-                {/* <hr></hr>
-                <p className="subTitle">Take and give quickly, safely and locally!</p>
-                <br></br> */}
                 <p className="socialLoginLine"><span>Quickly Connect with</span></p>
+
+                {/* facebook */}
                 <SocialLogin
                   options={{
                     provider: 'facebook',
                     appId: this.state.facebook,
                     onSuccess: res => {
-                      //console.log('Login Success', res);
-                      this.setState({ email: res.email, name: res.name, picture: res.picture });
+                      this.setState({ email: res.email, name: res.name });
                       this.handleFormSubmit();
                       this.closeModal();
                       { window.location.reload("true") }
@@ -203,17 +158,18 @@ class LoginButton extends React.Component {
                   component={<FacebookLoginButton onClick={this.handleFormSubmit} />}
                 />
                 <br></br>
+                {/* google */}
                 <SocialLogin
                   options={{
                     provider: 'google',
                     appId: this.state.google,
                     onSuccess: res => {
-                      //console.log('Login Success', res);
-                      this.setState({ email: res.email, name: res.first_name + " " + res.last_name, picture: res.picture });
+                      console.log('Login Success', res);
+                      this.setState({ email: res.email, name: res.first_name + " " + res.last_name });
                       this.handleFormSubmit();
                       this.closeModal();
-                       { window.location.reload("true") }
-                       console.log('Login Success');
+                      { window.location.reload("true") }
+                      console.log('Login Success');
                     },
                     onFail: error => {
                       console.log('Login Fail', error);
@@ -222,17 +178,11 @@ class LoginButton extends React.Component {
                   component={<GoogleLoginButton onClick={this.handleFormSubmit} />}
                 />
                 <br></br>
-                {/* <p className="socialLoginLine"><span>Or USE YOUR EMAIl</span></p> */}
-
                 <div className="footerSign">
-
                   <a href="#nav-home" className=" " > </a>
-
-                  {/* <a href="#nav-content1" className="verticalLine contentSignUp" > Sign Up</a> */}
                 </div>
               </div>
             </div>
-
           </div>
         </Modal>
       </div>
@@ -240,4 +190,4 @@ class LoginButton extends React.Component {
   }
 }
 
-export default LoginButton;
+export default Login;

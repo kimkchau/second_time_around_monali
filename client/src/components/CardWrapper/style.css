@@ -1,9 +1,6 @@
 .classwrapper {
-    /* background: #ECEFF1; */
-    /* background: whitesmoke; */
     display: flex;
     height: 100%;
-   ;
     flex-flow: row wrap;
     padding: 20px;
     position: inline;

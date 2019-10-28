@@ -11,7 +11,7 @@ const style = {
     height: '100%',
   }
 
-class TraesModal extends Component {
+class MapModal extends Component {
 
     state = {
         position: this.props.position,
@@ -89,4 +89,4 @@ class TraesModal extends Component {
         }
 export default GoogleApiWrapper({
     apiKey: "AIzaSyC43qVzPHXSL3TaW4zNV8Kwu6a3PdmLcp8"
-  })(TraesModal);
+  })(MapModal);
