@@ -12,6 +12,7 @@
     "cors": "^2.8.5",
     "dateformat": "^3.0.3",
     "dotenv": "^8.0.0",
+    "eslint-utils": "^1.4.3",
     "express": "^4.17.1",
     "express-form-data": "^2.0.10",
     "google-map-react": "^1.1.4",
