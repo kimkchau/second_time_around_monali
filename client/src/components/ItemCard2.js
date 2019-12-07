@@ -21,20 +21,14 @@ class ItemCard2 extends Component {
     handleClick = (id) => {
 
         console.log("inside click" + id);
-        API.deleteData(id).then(res=>console.log(res)).catch(err => console.log(err));
+        API.deleteData(id).then(res => console.log(res)).catch(err => console.log(err));
         window.location.reload(true);
 
     };
 
-
-
-
-
-
     updatePost = () => {
         console.log(this.state.claimed_date);
         console.log(this.state.idtest);
-        // console.log("gafsgas");
         const msg = {
             number: this.state.number,
             message: "Thanks for visiting SecondTimeAround!order confirmed.collect your item within 2 days"
@@ -42,26 +36,17 @@ class ItemCard2 extends Component {
 
         API.getEmail(msg)
             .then(res => {
-
-                // this.props.updatestock(this.state.stocks);
                 console.log(res.data);
-            }
-
-            )
+            })
             .catch(err => console.log(err));
-
     };
 
-
-
     render() {
-
-        //console.log(this.props.item.itemName);
 
         return (
             <div className="col-md-4" >
                 <div className="card cardstyle">
-                    <img className="card-img-top" src={this.props.item.url} width="100px" height="200px"></img>
+                    <img className="card-img-top" alt="product_image" src={this.props.item.url} width="100px" height="200px"></img>
                     <div className="card-body">
                         <h5 className="sectiontitle card-title">{this.props.item.itemName}</h5>
                         <hr></hr>
@@ -72,7 +57,7 @@ class ItemCard2 extends Component {
                     {/*<!-- Button trigger modal -->*/}
                     <div className="col-md-4">
                         <div className="">
-                            <button type="button" className="navbutton btn btn-warning my-2 btn-sm"  onClick={() => this.handleClick(this.props.item._id)} >{this.state.text}</button>
+                            <button type="button" className="navbutton btn btn-warning my-2 btn-sm" onClick={() => this.handleClick(this.props.item._id)} >{this.state.text}</button>
                         </div>
                     </div>
                     {/*<!-- Modal -->*/}

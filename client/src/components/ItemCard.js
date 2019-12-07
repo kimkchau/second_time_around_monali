@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import API from "../utils/API";
 import "./itemcardstyle.css";
 import Geocode from "react-geocode";
-import MapModal from "../components/traesModal";
+import MapModal from "../components/MapModal";
 var dateFormat = require('dateformat');
 
-const style = {
-  width: '93%',
-  height: '100%',
-}
+// const style = {
+//   width: '93%',
+//   height: '100%',
+// }
 
 class ItemCard extends Component {
 
@@ -61,7 +61,7 @@ class ItemCard extends Component {
   handleClick = (id) => {
 
     // console.log("inside click" + id);
-    var claimed_date = new Date();
+    // var claimed_date = new Date();
     // console.log("ooo" + claimed_date);
     //this.setState({idtest:id})
     //var claimedDate=claimed_date;
@@ -98,7 +98,7 @@ class ItemCard extends Component {
     return (
       <div className="col-md-4" >
         <div className="card cardstyle">
-          <img className="card-img-top" src={this.props.item.url} width="100px" height="200px"></img>
+          <img className="card-img-top" src={this.props.item.url} alt="" width="100px" height="200px"></img>
           <div className="card-body">
             <h5 className="sectiontitle card-title">{this.props.item.itemName}</h5>
             <hr></hr>

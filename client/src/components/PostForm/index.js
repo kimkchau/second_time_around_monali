@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./style.css";
 import API from "../../utils/API";
 import Webcam from "react-webcam";
@@ -201,7 +201,7 @@ class PostForm extends Component {
                     <h6 className="formfield" >Item quantity:{this.state.stock_arr.quantity}</h6>
                     <h6 className="formfield" >Department:{this.state.stock_arr.category}</h6>
                     <h6 className="formfield" >Address:{this.state.stock_arr.Address}</h6>
-                    <img src={this.state.url} width="200px" height="200px"></img>
+                    <img src={this.state.url} alt="" width="200px" height="200px"></img>
                     <br></br>
                     <div className="modal-footer">
                       <button type="button" className="navbutton btn btn-warning my-2 btn-sm" onClick={() => this.deletePost(this.state.stock_arr._id)} data-dismiss="modal">Delete</button>

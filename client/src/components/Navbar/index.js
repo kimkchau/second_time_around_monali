@@ -4,7 +4,6 @@ import Login from "../Login";
 import SignOutButton from "../SignOutButton";
 import { Link } from "react-router-dom"
 
-
 class Navbar extends React.Component {
   state = {
     login: false
@@ -50,12 +49,11 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a className="navstyle nav-link" href="#">
+                <a className="navstyle nav-link" href="#space">
                 </a>
               </li>
               <li className="navstyle nav-item">
-                <a className="nav-link" href="#">
-                  {/* Donate */}
+                <a className="nav-link" href="#space">
                 </a>
               </li>
             </ul>
